@@ -18,4 +18,4 @@ app.get('/:anythingelse', function(req, res){
   res.send(req.headers);
 });
 
-app.listen(process.env.PORT);
+app.listen(process.env.PORT || 3000);
