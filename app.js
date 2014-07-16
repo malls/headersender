@@ -14,4 +14,8 @@ app.get('*', function(req, res){
   res.send(req.headers);
 });
 
+app.post('*', function(req, res){
+  res.send(req.headers);
+});
+
 app.listen(process.env.PORT || 3000);
