@@ -1,7 +1,11 @@
 var users = {
-  user1: {
-    age: 15,
-    name: "username"
+  bob: {
+    age: 25,
+    name: "bob"
+  },
+  alice: {
+  	age: 23,
+  	name: "alice"
   }
 };
 
