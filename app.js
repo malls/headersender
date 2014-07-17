@@ -23,9 +23,12 @@ app
 		var post = posts[req.params.post];
 		res.send({post: post, headers: req.headers});
 	})
+	.get('/posts', function(req, res){
+		res.send({posts: posts});
+	})
 	.post('/posts', function(req, res){
 		var post = req.post;
-		// posts[post.name] = post;
+		posts[post.name] = post;
 		res.send({post: post, headers: req.headers});
 	});
 
@@ -33,6 +36,9 @@ app
 	.get('/users/:user', function(req, res){
 	  var user = users[req.params.user];
 	  res.send({user: user, headers: req.headers});
+	})
+	.get('/users', function(req, res){
+		res.send({users: users});
 	})
 	.post('/users', function(req, res){
 		res.send({user: req.user, headers: req.headers});
