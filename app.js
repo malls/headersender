@@ -3,15 +3,18 @@ var express = require('express');
 var auth = require('./mocks/auth');
 var posts = require('./mocks/posts');
 var users = require('./mocks/users');
+var bodyParser = require('body-parser');
 var app = express();
 
 dotenv.load();
 
-app.use(function(req, res, next) {
-  res.header('Access-Control-Allow-Origin', '*');
-  res.header('Access-Control-Allow-Headers', 'X-Requested-With, Authorization, Accept-Site');
-  next();
- });
+app
+	.use(function(req, res, next) {
+	  res.header('Access-Control-Allow-Origin', '*');
+	  res.header('Access-Control-Allow-Headers', 'X-Requested-With, Authorization, Accept-Site');
+	  next();
+	 })
+	.use(bodyParser.json());
 
 app
 	.get('/auth', function(req, res){
@@ -27,7 +30,7 @@ app
 		res.send({posts: posts});
 	})
 	.post('/posts', function(req, res){
-		var post = req.post;
+		var post = req.body.post;
 		posts[post.name] = post;
 		res.send({post: post, headers: req.headers});
 	});
@@ -41,7 +44,7 @@ app
 		res.send({users: users});
 	})
 	.post('/users', function(req, res){
-		res.send({user: req.user, headers: req.headers});
+		res.send({user: req.body.user, headers: req.headers});
 	});
 
 app
