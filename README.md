@@ -1,4 +1,4 @@
-cute lil server that sends back the headers for any request made to it
+mock backend for Angular REST testing
 
 to set up: 
 - npm install 
