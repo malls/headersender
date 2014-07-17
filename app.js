@@ -19,6 +19,9 @@ app
 app
 	.get('/auth', function(req, res){
   		res.send({auth: auth, headers: req.headers});
+	})
+	.post('/auth', function(req, res){
+  		res.send({auth: auth, headers: req.headers});
 	});
 
 app
