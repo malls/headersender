@@ -1,10 +1,10 @@
-var dotenv = require('dotenv');
-var express = require('express');
-var auth = require('./mocks/auth');
-var posts = require('./mocks/posts');
-var users = require('./mocks/users');
-var bodyParser = require('body-parser');
-var app = express();
+var dotenv = require('dotenv'),
+	express = require('express'),
+	auth = require('./mocks/auth'),
+	posts = require('./mocks/posts'),
+	users = require('./mocks/users'),
+	bodyParser = require('body-parser'),
+	app = express();
 
 dotenv.load();
 
