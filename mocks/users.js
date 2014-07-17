@@ -13,8 +13,8 @@ var users = [
   }
 ];
 
-function find(id){
-  return library.searcher(users, 'name', id);
+function find(name){
+  return library.searcher(users, 'name', name);
 }
 
 module.exports = {
