@@ -23,21 +23,19 @@ app
 
 app
 	.get('/posts/:post', function(req, res){
-		var post = posts[req.params.post];
+		var post = posts.find(req.params.post);
 		res.send({post: post, headers: req.headers});
 	})
 	.get('/posts', function(req, res){
-		res.send({posts: posts});
+		res.send({posts: posts, headers: req.headers});
 	})
 	.post('/posts', function(req, res){
-		var post = req.body.post;
-		posts[post.name] = post;
-		res.send({post: post, headers: req.headers});
+		res.send({post: req.body.post, headers: req.headers});
 	});
 
 app
 	.get('/users/:user', function(req, res){
-	  var user = users[req.params.user];
+	  var user = users.find(req.params.user);
 	  res.send({user: user, headers: req.headers});
 	})
 	.get('/users', function(req, res){
