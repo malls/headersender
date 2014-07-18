@@ -27,7 +27,7 @@ function ObjectId(id){
 }
 
 function find(id){
-	return library.searcher(posts, '_id', id);
+	return lib.searcher(posts, '_id', id);
 }
 
 function index(id){

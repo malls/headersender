@@ -30,11 +30,10 @@ app
 	})
 	.post('/:type/:id', function (req, res) {
 		var response = {};
+		var type = req.params.type;
 		var index = db[req.params.type].index(req.params.id);
-		db[req.params.type][req.params.type][index] = req.body[req.params.type];
-		db[req.params.type][req.params.type][index]._id = req.params.id;
-		console.log(db[req.params.type].find(req.params.id));
-		response[req.params.type] = db[req.params.type].find(req.params.id);
+		db[type][type][index] = lib.updater(db[type][type][index], req.body);
+		response[type] = db[type].find(req.params.id);
 		response.headers = req.headers;
 		res.send(response);
 	})
