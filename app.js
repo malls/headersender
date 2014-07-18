@@ -1,59 +1,53 @@
 var dotenv = require('dotenv'),
 	express = require('express'),
-	auth = require('./mocks/auth'),
-	posts = require('./mocks/posts'),
-	users = require('./mocks/users'),
 	bodyParser = require('body-parser'),
+	db = require('./db/db'),
 	app = express();
 
 dotenv.load();
 
 app
-	.use(function(req, res, next) {
+	.use(function (req, res, next) {
 	  res.header('Access-Control-Allow-Origin', '*');
 	  res.header('Access-Control-Allow-Headers', 'X-Requested-With, Authorization, Accept-Site');
 	  next();
 	 })
-	.use(bodyParser.json());
+	.use(bodyParser.json ());
 
 app
-	.get('/auth', function(req, res){
-  		res.send({auth: auth, headers: req.headers});
+	.get('/:type/:id', function (req, res) {
+		var response = {};
+		response[req.params.type] = db[req.params.type].find(req.params.id);
+		response.headers = req.headers;
+	  	res.send(response);
 	})
-	.post('/auth', function(req, res){
-  		res.send({auth: auth, headers: req.headers});
-	});
-
-app
-	.get('/posts/:post', function(req, res){
-		var post = posts.find(req.params.post);
-		res.send({post: post, headers: req.headers});
+	.get('/:type', function (req, res) {
+		var response = {};
+		response[req.params.type] = db[req.params.type][req.params.type]; 
+		response.headers = req.headers;
+		res.send(response);
 	})
-	.get('/posts', function(req, res){
-		res.send({posts: posts, headers: req.headers});
+	.post('/:type/:id', function (req, res) {
+		var response = {};
+		var index = db[req.params.type].index(req.params.id);
+		db[req.params.type][req.params.type][index] = req.body[req.params.type];
+		response[req.params.type] = db[req.params.type].find(req.params.id);
+		response.headers = req.headers;
+		res.send(response);
 	})
-	.post('/posts', function(req, res){
-		res.send({post: req.body.post, headers: req.headers});
-	});
-
-app
-	.get('/users/:user', function(req, res){
-	  var user = users.find(req.params.user);
-	  res.send({user: user, headers: req.headers});
+	.post('/:type', function (req, res) {
+		var response = {};
+		var list = db[req.params.type][req.params.type];
+		list.push(req.body[req.params.type]);
+		response[req.params.type] = list;
+		response.headers = req.headers;
+		res.send(response);
 	})
-	.get('/users', function(req, res){
-		res.send({users: users});
-	})
-	.post('/users', function(req, res){
-		res.send({user: req.body.user, headers: req.headers});
-	});
-
-app
-	.get('*', function(req, res){
+	.get('*', function (req, res) {
 	  res.send(req.headers);
 	})
-	.post('*', function(req, res){
+	.post('*', function (req, res) {
 	  res.send(req.headers);
 	});
 
-app.listen(process.env.PORT || 3000);
+app.listen (process.env.PORT || 3000);

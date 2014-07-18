@@ -1,0 +1,1 @@
+module.exports = {vertical: "a vertical"};
