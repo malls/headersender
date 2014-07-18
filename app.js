@@ -18,13 +18,15 @@ app
 app
 	.get('/:type/:id', function (req, res) {
 		var response = {};
-		response[req.params.type] = db[req.params.type].find(req.params.id);
+		var type = req.params.type;
+		response[type] = db[req.params.type].find(req.params.id);
 		response.headers = req.headers;
 	  	res.send(response);
 	})
 	.get('/:type', function (req, res) {
 		var response = {};
-		response[req.params.type] = db[req.params.type][req.params.type]; 
+		var type = req.params.type;
+		response[type] = db[type][type]; 
 		response.headers = req.headers;
 		res.send(response);
 	})
@@ -32,8 +34,9 @@ app
 		var response = {};
 		var type = req.params.type;
 		var id = req.params.id;
-		var index = db[req.params.type].index(id);
-		db[type][type][index] = lib.updater(db[type][type][index], req.body);
+		var list = db[type][type];
+		var index = db[type].index(id);
+		list[index] = lib.updater(list[index], req.body);
 		response[type] = db[type].find(id);
 		response.headers = req.headers;
 		res.send(response);

@@ -59,11 +59,16 @@ var users = [
 	}
 ];
 
-function find(name){
-	return lib.searcher(users, 'name', name);
+function find(id){
+	return lib.searcher(users, '_id', id);
+}
+
+function index(id){
+	return lib.getIndex(users, '_id', id);
 }
 
 module.exports = {
 	users: users,
-	find: find
-}
+	find: find,
+	index: index
+};

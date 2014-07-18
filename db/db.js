@@ -7,5 +7,5 @@ module.exports = {
 	posts: require('./mocks/posts'),
 	publications: require('./mocks/publications'),
 	users: require('./mocks/users'),
-	verticals: require('./mocks/verticals'),
+	verticals: require('./mocks/verticals')
 };
