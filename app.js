@@ -31,17 +31,19 @@ app
 	.post('/:type/:id', function (req, res) {
 		var response = {};
 		var type = req.params.type;
-		var index = db[req.params.type].index(req.params.id);
+		var id = req.params.id;
+		var index = db[req.params.type].index(id);
 		db[type][type][index] = lib.updater(db[type][type][index], req.body);
-		response[type] = db[type].find(req.params.id);
+		response[type] = db[type].find(id);
 		response.headers = req.headers;
 		res.send(response);
 	})
 	.post('/:type', function (req, res) {
 		var response = {};
-		var list = db[req.params.type][req.params.type];
-		list.push(req.body[req.params.type]);
-		response[req.params.type] = list;
+		var type = req.params.type;
+		var list = db[type][type];
+		list.push(req.body);
+		response[type] = list;
 		response.headers = req.headers;
 		res.send(response);
 	})
