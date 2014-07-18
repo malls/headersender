@@ -2,6 +2,7 @@ var dotenv = require('dotenv'),
 	express = require('express'),
 	bodyParser = require('body-parser'),
 	db = require('./db/db'),
+	lib = require('./lib/library'),
 	app = express();
 
 dotenv.load();
@@ -31,6 +32,8 @@ app
 		var response = {};
 		var index = db[req.params.type].index(req.params.id);
 		db[req.params.type][req.params.type][index] = req.body[req.params.type];
+		db[req.params.type][req.params.type][index]._id = req.params.id;
+		console.log(db[req.params.type].find(req.params.id));
 		response[req.params.type] = db[req.params.type].find(req.params.id);
 		response.headers = req.headers;
 		res.send(response);

@@ -1,4 +1,4 @@
-var library = require("../../lib/library");
+var lib = require("../../lib/library");
 
 var users = [
 	{
@@ -60,7 +60,7 @@ var users = [
 ];
 
 function find(name){
-	return library.searcher(users, 'name', name);
+	return lib.searcher(users, 'name', name);
 }
 
 module.exports = {

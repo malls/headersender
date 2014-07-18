@@ -1,4 +1,4 @@
-var library = require("../../lib/library");
+var lib = require("../../lib/library");
 
 var posts = [
   { "_id": "007a6c791399ef48182ea300", "author" : "Henry Blodget", "browser_title" : "", "categories" : [  "Apple" ], "cls" : "entry", "comment_count" : 1, "comment_notify" : false, "comments" : [   {   "author" : "anonymous",   "email" : "alonely@yahoo.com",  "url" : null,   "ts" : ISODate("2008-10-13T05:31:10.325Z"),   "text" : "With <a href=\"http://www.trpconverter.com\">trp converter</a>, you shall have rich options to adjust video settings and set audio properties. this excellent conversion tool provides other functions, for example, adjust video effect, crop movie, join Trp files together and trim any segment casually from you TRP videos as you like.",  "ip" : "221.220.222.250",   "useragent" : "Mozilla/5.0 (Windows; U; Windows NT 5.1; zh-CN; rv:1.8.1.16) Gecko/20080702 Firefox/2.0.0.16",   "isAdmin" : false,  "cid" : ObjectId("5b7a6c791dddf24817194c00") } ], "content" : "<p><img class=\"float_right\" src=\"/~~/f?id=47a939b44b543772005e6af0\" border=\"0\" alt=\"stevejobs.jpg\" title=\"stevejobs.jpg\" width=\"188\" height=\"250\" />Despite global market carnage, Apple (AAPL) is holding the $90 level it first breached several days ago.&nbsp; As we noted at the time, at that level, after factoring out $23 a share in cash (and no debt), Apple's business is trading at under 10X trailing free cash flow--an extraordinarily low multiple for a company like this.</p>\r\n<p>Could it go lower? Of course. And if the world markets continue to implode, it probably will.&nbsp; But at this level, there appears to be both valuation and market support.</p>\r\n<p><strong>See Also: </strong><a href=\"http://www.alleyinsider.com/2008/10/apple-aapl-stock-major-buyers-hitting-that-90-bid\">Apple: Major Buyers Stepping In At $90</a></p>", "excerpt" : "", "external" : false, "homepage_river" : true, "live" : true, "name" : "2008/10/apple-stock-holding-key-90-level", "ticker" : [ ], "title" : "Apple Stock Holding Key $90 Level", "ts" : ISODate("2008-10-10T17:59:00Z"), "type" : "story", "vertical" : "sai", "vertical_river" : true, "verticals" : [  "sai" ], "views" : 24 },
@@ -31,7 +31,7 @@ function find(id){
 }
 
 function index(id){
-	return library.getIndex(posts, '_id', id);
+	return lib.getIndex(posts, '_id', id);
 }
 
 module.exports = {
