@@ -20,14 +20,12 @@ app
         var response = {};
         var type = req.params.type;
         response = db[req.params.type].find(req.params.id);
-        //response.headers = req.headers;
           res.send(response);
     })
     .get('/:type', function (req, res) {
         var response = {};
         var type = req.params.type;
         response = db[type][type];
-        //response.headers = req.headers;
         res.send(response);
     })
     .post('/:type/:id', function (req, res) {
@@ -38,7 +36,6 @@ app
         var index = db[type].index(id);
         list[index] = lib.updater(list[index], req.body);
         response = db[type].find(id);
-        //response.headers = req.headers;
         res.send(response);
     })
     .post('/:type', function (req, res) {
@@ -47,7 +44,6 @@ app
         var list = db[type][type];
         list.push(req.body);
         response = list;
-        //response.headers = req.headers;
         res.send(response);
     })
     .get('*', function (req, res) {
