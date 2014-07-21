@@ -19,8 +19,8 @@ app
     .get('/:type/:id', function (req, res) {
         var response = {};
         var type = req.params.type;
-        response = db[req.params.type].find(req.params.id);
-          res.send(response);
+        response = db[type].find(req.params.id);
+        res.send(response);
     })
     .get('/:type', function (req, res) {
         var response = {};
@@ -53,4 +53,4 @@ app
       res.send(req.headers);
     });
 
-app.listen (process.env.PORT || 3000);
+app.listen (process.env.RESTPORT || 3000);
