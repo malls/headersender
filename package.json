@@ -1,6 +1,7 @@
 {
   "name": "cms-rest",
   "version": "0.0.1",
+  "repository": "git+ssh://git@github.com/malls/angular-cms-resources.git",
   "scripts": {
     "start": "node app.js"
   },
