@@ -21,7 +21,7 @@ var posts = [
 			"link" : "",
 			"caption" : "some cap",
 			"click_to_enlarge" : "1",
-			"on_image_source" : true
+			"on_image_source" : "true"
 		}
 	],
 	"author" : [
