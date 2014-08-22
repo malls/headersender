@@ -3,11 +3,11 @@ var lib = require("../../lib/library");
 var users = [
 	{
 		"_id" : "06b9b91496d9ecb49f15fca00",
-		"name" : "bob",
-		"email" : "bob@test.com",
+		"name" : "forrest",
+		"email" : "forrest@test.com",
 		"pass_ha1_name" : "4a8367289d71ca622da4828d4a5314e27",
 		"pass_ha1_email" : "27ac363e8decc15eeee2cab6d5d3f4bb8",
-		"nickname" : "bob",
+		"nickname" : "forrest",
 		"url" : "",
 		"uniqueness_hash" : "79ef4674da6b3d318ceb8da9e80f3cd6f",
 		"tokens" : [
@@ -40,11 +40,11 @@ var users = [
 	},
 	{
 		"_id" : "06b9b9144648cdb498937ca00",
-		"name" : "forrest",
-		"email" : "forrest@gmail.com",
+		"name" : "bob",
+		"email" : "bob@gmail.com",
 		"pass_ha1_name" : "a786b0a590a5a4fb5236a77079d0cb36d",
 		"pass_ha1_email" : "b9f4da1a9314b5c9ead2d4723eec8bf2e",
-		"nickname" : "forrest",
+		"nickname" : "bob",
 		"url" : "",
 		"uniqueness_hash" : "5158169c89c87bae874f9e07236c5ec2f",
 		"tokens" : [
