@@ -28,6 +28,14 @@ app
         response = db[type][type];
         res.send(response);
     })
+    .post('/:type/new', function (req, res) {
+        var obj = req.body;
+        var type = req.params.type;
+        var id = lib.generateId();
+        obj._id = id;
+        db[type][type].push(obj);
+        res.send(id);
+    })
     .post('/:type/:id', function (req, res) {
         var response = {};
         var type = req.params.type;
