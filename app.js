@@ -37,9 +37,16 @@ app
 app
     .get('/images/:id', function (req, res) {
         var _res = res;
+        _res.writeHead(200, {'Content-Type': 'image/gif'});
         http.get(imageSource + req.params.id, function (res) {
-            console.log('response from get', res);
-            _res.send(res);
+            var imagedata = '';
+            res.setEncoding('binary');
+            res.on('data', function (chunk) {
+                imagedata += chunk;
+            });
+            res.on('end', function() {
+                _res.end(imagedata, 'binary');
+            });
         }).on('error', function (err) {
             console.log('error getting image: ', err);
         });
