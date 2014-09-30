@@ -1,21 +1,49 @@
+'use strict';
+
 var dotenv = require('dotenv'),
     express = require('express'),
+    http = require('http'),
+    httpProxy = require('http-proxy'),
     bodyParser = require('body-parser'),
     db = require('./db/db'),
-    lib = require('./lib/library'),
-    app = express();
+    lib = require('./lib/library');
+
+var app = express();
+var imageSource = process.env.IMAGESOURCE || 'http://local.businessinsider.com/image/';
+
+var proxy = httpProxy.createProxyServer();
 
 dotenv.load();
 
-app
-    .use(function (req, res, next) {
-      res.header('Access-Control-Allow-Origin', '*');
-      res.header('Access-Control-Allow-Headers', 'X-Requested-With, Authorization, Accept-Site, Content-Type');
+var allowCrossDomain = function(req, res, next) {
+    console.log('allowingCrossDomain');
+    res.header('Access-Control-Allow-Origin', '*');
+    res.header('Access-Control-Allow-Methods', 'GET,PUT,POST,PATCH,DELETE');
+    res.header('Access-Control-Allow-Headers', 'X-Requested-With, Accept, Origin, Referer, User-Agent, Content-Type, Authorization, X-Mindflash-SessionID');
+      
+    // intercept OPTIONS method
+    if ('OPTIONS' === req.method) {
+      res.send(200);
+    }
+    else {
       next();
-     })
-    .use(bodyParser.json ());
+    }
+};
 
 app
+    .use(allowCrossDomain)
+    .use(bodyParser.json());
+
+app
+    .get('/images/:id', function (req, res) {
+        var _res = res;
+        http.get(imageSource + req.params.id, function (res) {
+            console.log('response from get', res);
+            _res.send(res);
+        }).on('error', function (err) {
+            console.log('error getting image: ', err);
+        });
+    })
     .get('/:type/:id', function (req, res) {
         var response = {};
         var type = req.params.type;
