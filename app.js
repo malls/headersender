@@ -3,7 +3,6 @@
 var dotenv = require('dotenv'),
     express = require('express'),
     http = require('http'),
-    httpProxy = require('http-proxy'),
     bodyParser = require('body-parser'),
     db = require('./db/db'),
     lib = require('./lib/library');
@@ -11,22 +10,17 @@ var dotenv = require('dotenv'),
 var app = express();
 var imageSource = process.env.IMAGESOURCE || 'http://local.businessinsider.com/image/';
 
-var proxy = httpProxy.createProxyServer();
-
 dotenv.load();
 
 var allowCrossDomain = function(req, res, next) {
-    console.log('allowingCrossDomain');
     res.header('Access-Control-Allow-Origin', '*');
     res.header('Access-Control-Allow-Methods', 'GET,PUT,POST,PATCH,DELETE');
     res.header('Access-Control-Allow-Headers', 'X-Requested-With, Accept, Origin, Referer, User-Agent, Content-Type, Authorization, X-Mindflash-SessionID');
       
-    // intercept OPTIONS method
-    if ('OPTIONS' === req.method) {
-      res.send(200);
-    }
-    else {
-      next();
+    if (req.method === 'OPTIONS') {
+        res.send(200);
+    } else {
+        next();
     }
 };
 
