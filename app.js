@@ -37,9 +37,9 @@ app
 app
     .get('/images/:id', function (req, res) {
         var _res = res;
-        _res.writeHead(200, {'Content-Type': 'image/gif'});
         http.get(imageSource + req.params.id, function (res) {
             var imagedata = '';
+            _res.writeHead(200, {'Content-Type': res.headers['content-type']});
             res.setEncoding('binary');
             res.on('data', function (chunk) {
                 imagedata += chunk;
