@@ -8,7 +8,8 @@ var dotenv = require('dotenv'),
     lib = require('./lib/library');
 
 var app = express();
-var imageSource = process.env.IMAGESOURCE || 'http://local.businessinsider.com/image/';
+// var imageSource = process.env.IMAGESOURCE || 'http://www.businessinsider.com/image/';
+var imageSource = process.env.IMAGESOURCE || 'http://us_local.businessinsider.com/image/';
 
 dotenv.load();
 
